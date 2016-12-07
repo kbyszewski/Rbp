@@ -3,10 +3,10 @@
 $cmd = "";
 switch ($_REQUEST['command']) {
     case "ping":
-        $cmd = "ping 127.0.0.1";
+        $cmd = "ping -c 4 127.0.0.1";
         break;
-    case "green":
-        echo "Your favorite color is green!";
+    case "memory_status":
+        $cmd = "free -m";
         break;
     default:
         echo "ERROR: unknown command";
@@ -22,9 +22,9 @@ $descriptorspec = array(					// create an array for stdin std out
    2 => array("pipe", "w")    // stderr is a pipe that the child will write to
 );
 
+if (!empty($cmd)) {
 flush();
 $process = proc_open($cmd, $descriptorspec, $pipes, realpath('./'), array());	// execute process
-
 echo "<pre>";
 if (is_resource($process)) {
     while ($s = fgets($pipes[1])) {
@@ -33,4 +33,5 @@ if (is_resource($process)) {
     }
 }
 echo "</pre>";
+}
 ?>

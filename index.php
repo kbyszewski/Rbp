@@ -3,7 +3,7 @@
 </head>
 
 <style>
-.output_div{border:1px solid #000; background-color:#CCC; margin:20px; width:500px; height:300px; font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;}
+.output_div{border:1px solid #000; background-color:#CCC; margin:20px; width:700px; height:300px; font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace; overflow-y: scroll;}
 </style>
 
 <script>
@@ -26,9 +26,14 @@ function ajax_get_command_output(output_target, command){
   
   
 $( document ).ready(function() {
-	$(".ajax_button").click(function(){
+	$(".ajax_button").click(function() {
 		$(".ajax_output").html($(".ajax_output").html()+"<br>AJAX call star");
 		ajax_get_command_output('.ajax_output','ping')
+	})
+
+	$(".ajax_mem_button").click(function(){
+		$(".ajax_output").html($(".ajax_output").html()+"<br>AJAX call star");
+		ajax_get_command_output('.ajax_output','memory_status')
 	})
 })
 </script>
@@ -44,7 +49,10 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {    // output data of each row
 ?>
 
-<input type="button" value="AJAX get" class="ajax_button" />
+
+<input type="button" value="ping" class="ajax_button" />
+<input type="button" value="memory status" class="ajax_mem_button" />
+
 <div class="ajax_output output_div">
 Output:
 </div>
