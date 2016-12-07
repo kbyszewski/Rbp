@@ -1,5 +1,5 @@
 <head>
-<script src="JS/jquery.min.js"></script>
+<script src="JS/jquery.min.js"> </script>
 </head>
 
 <style>
