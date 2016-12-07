@@ -23,7 +23,7 @@ $descriptorspec = array(					// create an array for stdin std out
 );
 
 flush();
-$process = proc_open($cmd, $descriptorspec, $pipes, realpath('./')/*, array()*/);	// execute process
+$process = proc_open($cmd, $descriptorspec, $pipes, realpath('./'), array());	// execute process
 
 echo "<pre>";
 if (is_resource($process)) {
